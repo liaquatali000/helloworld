@@ -31,5 +31,5 @@ jobs:
       - name: Initialize Elastic Beanstalk environment
         run: eb init -r us-east-1 -p python-3.11 Flask-env
 
-      - name: Deploy to Elastic Beanstalk
-        run: eb deploy Flask-env --env Flask-env
+      - name: Redeploy to Elastic Beanstalk
+        run: eb deploy Flask-version-1 --env Flask-env
