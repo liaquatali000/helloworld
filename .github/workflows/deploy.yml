@@ -28,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Create application version
-        run: eb appversion --create Flask-env --version v.12
+      - name: Initialize Elastic Beanstalk environment
+        run: eb init -r us-east-1 -p python-3.11 Flask-env
 
       - name: Deploy to Elastic Beanstalk
-        run: eb deploy v.12 --env Flask-env
+        run: eb deploy Flask-env
