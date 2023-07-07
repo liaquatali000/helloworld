@@ -35,8 +35,8 @@ jobs:
       - name: Initialize Elastic Beanstalk environment
         run: eb init -r us-east-1 -p python-3.11 Flask-env
 
-      - name: Package application
-        run: eb package "$(cat version.txt)"
+      - name: Archive application
+        run: zip -r "$(cat version.txt).zip" .
 
       - name: Create application version
         run: |
