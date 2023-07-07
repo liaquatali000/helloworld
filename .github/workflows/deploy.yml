@@ -1,4 +1,4 @@
-name: Flask-env
+name: Deploy to Elastic Beanstalk
 
 on:
   push:
