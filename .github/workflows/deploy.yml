@@ -25,5 +25,5 @@ jobs:
 
       - name: Deploy to Elastic Beanstalk
         run: |
-          eb init -r us-east-1 -p python-3.8 <Your-EB-Environment-Name>
-          eb deploy <Your-EB-Environment-Name>
+          eb init -r us-east-1 -p python-3.8 Flask-env
+          eb deploy Flask-env
