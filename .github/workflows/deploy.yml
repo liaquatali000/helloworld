@@ -28,7 +28,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Deploy to Elastic Beanstalk
+      - name: Generate application version name
+        id: version
+        run: echo "app-$(date +%Y%m%d_%H%M%S)" >> version.txt
+
+      - name: Create application version
         run: |
           eb init -r us-east-1 -p python-3.11 Flask-env
-          eb deploy Flask-env
+          eb create-app-version --version "$(cat version.txt)" --process
+
+      - name: Deploy to Elastic Beanstalk
+        run: |
+          eb deploy Flask-env --version "$(cat version.txt)"
+          
+          
