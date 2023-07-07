@@ -23,7 +23,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-north-1
+          aws-region: us-east-1
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -31,5 +31,9 @@ jobs:
       - name: Initialize Elastic Beanstalk environment
         run: eb init -r us-east-1 -p python-3.11 Flask-env
 
-      - name: Redeploy to Elastic Beanstalk
+      - name: Update application version description
+        run: |
+          aws elasticbeanstalk update-application-version --version-label Flask-version-1 --application-name Flask-env --description "New description"
+
+      - name: Deploy to Elastic Beanstalk
         run: eb deploy Flask-version-1 --env Flask-env
