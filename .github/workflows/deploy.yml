@@ -5,7 +5,7 @@ on:
     branches:
     - master
   
-jjobs:
+jobs:
   deploy:
     runs-on: ubuntu-latest
 
