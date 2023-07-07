@@ -23,13 +23,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-north-1
+          aws-region: us-east-1
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Initialize Elastic Beanstalk environment
-        run: eb init -r us-east-1 -p python-3.11 Flask-env
+        run: eb init -r us-east-1 -p python-3.11 Flask-env --platform "64bit Amazon Linux 2"
 
-      - name: Redeploy to Elastic Beanstalk
-        run: eb deploy Flask-env --env Flask-env
+      - name: Deploy to Elastic Beanstalk
+        run: eb deploy --staged --label "$(date +%Y%m%d_%H%M%S)"
