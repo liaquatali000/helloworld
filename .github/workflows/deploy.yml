@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   deploy:
@@ -17,7 +16,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
 
@@ -26,5 +25,5 @@ jobs:
 
       - name: Deploy to Elastic Beanstalk
         run: |
-          eb init -r us-east-1 -p python-3.8 Flask-env
+          eb init -r eu-north-1 -p python-3.11 Flask-env
           eb deploy Flask-env
