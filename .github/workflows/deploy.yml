@@ -37,7 +37,7 @@ jobs:
 
       - name: Create application version
         run: |
-          eb appversion --create Flask-env --version "$(cat version.txt)"
+          eb appversion create --source . --version "$(cat version.txt)"
 
       - name: Deploy to Elastic Beanstalk
         run: |
