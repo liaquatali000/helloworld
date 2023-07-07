@@ -31,9 +31,5 @@ jobs:
       - name: Initialize Elastic Beanstalk environment
         run: eb init -r us-east-1 -p python-3.11 Flask-env
 
-      - name: Update application version description
-        run: |
-          aws elasticbeanstalk update-application-version --version-label Flask-version-1 --application-name Flask-env --description "New description"
-
       - name: Deploy to Elastic Beanstalk
         run: eb deploy Flask-version-1 --env Flask-env
