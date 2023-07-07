@@ -36,7 +36,9 @@ jobs:
         run: eb init -r us-east-1 -p python-3.11 Flask-env
 
       - name: Create application version
-        run: eb appversion create --version "$(cat version.txt)"
+        run: |
+          eb appversion --create Flask-env --version "$(cat version.txt)"
 
       - name: Deploy to Elastic Beanstalk
-        run: eb deploy --version "$(cat version.txt)" Flask-env
+        run: |
+          eb deploy --version "$(cat version.txt)" Flask-env
